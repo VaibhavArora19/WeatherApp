@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+   <!-- Google Fonts -->
+
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+   
+   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css">
+  <title>Document</title>
+
+
+</head>
+
+<body>
+  <h3 class="name">WEATHER APP</h3>
+
+  <form action="/" method="post">
+    <input class="search mb-3 form-control" id="exampleFormControlInput1" name = "searchCity" type="text" placeholder="<%=city%>" row=2 autocomplete="off">
+    <button type="submit" class="btn btn-warning btn-search"> <i class="fas fa-search-location"></i> </button>
+  </form>
+  <div class="main">
+    <div class="heading">
+      <h1 class="cityname">
+        <%=city %>
+
+      </h1>
+      <p class="date">
+        <%=date%>
+      </p>
+    </div>
+    <div class="focus">
+      <img class="weatherimage" src="<%=image %>" />
+      <h3 class="temperature">
+        <%= weatherList[0].main.temp %><span>&#176;</span>
+      </h3>
+      <h3 class="description">
+        <%= weatherList[0].weather[0].description %>
+      </h3>
+
+    </div>
+    <div class="sidedata">
+      <div class="row">
+        <h4 class="humidity col-lg-6 ">
+          <%=weatherList[0].main.humidity %>
+            <p>Humidity</p>
+        </h4>
+        <h4 class="speed col-lg-6 ">
+          <%=weatherList[0].wind.speed %>
+            <p>Wind</p>
+        </h4>
+      </div>
+      <div class="row">
+        <h4 class="temp_max col-lg-6">
+          <%= weatherList[0].main.temp_max %><span>&#176;</span>
+            <p>Max_Temp</p>
+        </h4>
+        <h4 class="temp_min col-lg-6">
+          <%= weatherList[0].main.temp_min %><span>&#176;</span>
+            <p>Min_Temp</p>
+        </h4>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="forecast">Forecast</h3>
+  <div class="Forecast">
+    <% let j=0;for(var i=1; i<=18; i+=3) {%>
+      <p class="Date">
+        <%=weatherList[i].dt_txt.substr(0,10) %>
+          <span class="time">
+            <%=weatherList[i].dt_txt.substr(10,14) %>
+          </span>
+          <img src="<%=imageArray[j]%>" />
+          <span>
+            <%=weatherList[i].main.temp %>&#176;<span>
+
+                <% j++;%>
+      </p>
+
+
+      <%} %>
+  </div>
+</body>
+
+</html>
